@@ -7,11 +7,11 @@ import os
 import setuptools
 
 requirements = [
-    "tabulate==0.8.9",
-    "vivisect==1.0.7",
-    "viv-utils[flirt]==0.6.11",
-    "pydantic==1.9.0",
-    "tqdm==4.63.0",
+    "tabulate==0.8.10",
+    "vivisect==1.0.8",
+    "viv-utils[flirt]==0.7.5",
+    "pydantic==1.10.2",
+    "tqdm==4.64.1",
     "networkx==2.5.1",
     "halo==0.0.31",
 ]
@@ -29,6 +29,11 @@ with open(os.path.join(this_directory, "README.md"), "r") as f:
     long_description = f.read()
 
 
+pkgs = setuptools.find_packages()
+if "floss.sigs" not in pkgs:
+    pkgs.append("floss.sigs")
+
+
 setuptools.setup(
     name="flare-floss",
     version=__version__,
@@ -38,7 +43,7 @@ setuptools.setup(
     author="Willi Ballenthin, Moritz Raabe",
     author_email="william.ballenthin@mandiant.com, moritz.raabe@mandiant.com",
     url="https://www.github.com/mandiant/flare-floss",
-    packages=setuptools.find_packages(exclude=["tests"]),
+    packages=pkgs,
     package_dir={"floss": "floss"},
     entry_points={
         "console_scripts": [
@@ -50,23 +55,20 @@ setuptools.setup(
     extras_require={
         "dev": [
             "pyyaml==6.0",
-            "pytest==7.1.1",
+            "pytest==7.1.3",
             "pytest-sugar==0.9.4",
             "pytest-instafail==0.4.2",
             "pytest-cov==3.0.0",
-            "pycodestyle==2.8.0",
-            "black==22.1.0",
+            "pycodestyle==2.9.1",
+            "black==22.8.0",
             "isort==5.10.1",
-            "mypy==0.941",
+            "mypy==0.971",
             # type stubs for mypy
-            "types-backports==0.1.3",
-            "types-colorama==0.4.9",
-            "types-PyYAML==6.0.5",
-            "types-tabulate==0.8.6",
-            "types-termcolor==1.1.3",
+            "types-PyYAML==6.0.12",
+            "types-tabulate==0.8.11",
         ],
         "build": [
-            "pyinstaller==4.10",
+            "pyinstaller==5.3",
         ],
     },
     zip_safe=False,
