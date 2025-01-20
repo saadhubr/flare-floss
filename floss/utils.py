@@ -1,4 +1,17 @@
-# Copyright (C) 2017 Mandiant, Inc. All Rights Reserved.
+# Copyright 2017 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
 import re
 import sys
@@ -32,16 +45,6 @@ from .api_hooks import ENABLED_VIV_DEFAULT_HOOKS
 STACK_MEM_NAME = "[stack]"
 
 logger = floss.logging_.getLogger(__name__)
-
-
-class ExtendAction(argparse.Action):
-    # stores a list, and extends each argument value to the list
-    # Since Python 3.8 argparse supports this
-    # TODO: remove this code when only supporting Python 3.8+
-    def __call__(self, parser, namespace, values, option_string=None):
-        items = getattr(namespace, self.dest, None) or []
-        items.extend(values)
-        setattr(namespace, self.dest, items)
 
 
 class InstallContextMenu(argparse.Action):
